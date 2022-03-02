@@ -6,7 +6,7 @@
 #    By: asippy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 22:41:46 by asippy            #+#    #+#              #
-#    Updated: 2022/03/02 00:47:53 by asippy           ###   ########.fr        #
+#    Updated: 2022/03/02 20:28:16 by asippy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,11 @@ SRCS_DIR							=	source/
 SRCS_LIST							=	ft_split.c ft_atoi.c\
 										utils.c\
 										unsorted_array.c sorted_array.c\
+										list.c\
 										stack_a.c\
-										push_swap.c
+										sort.c\
+										instructions.c\
+										push_swap.c\
 
 HEAD_DIR							=	include/
 HEAD_NAME							=	push_swap.h

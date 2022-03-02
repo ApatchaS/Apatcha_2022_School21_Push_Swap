@@ -13,7 +13,7 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-static void	ft_print_array(int *arr, size_t len, const char *title)
+void	ft_print_array(int *arr, size_t len, const char *title)
 {
 	printf("%s\n", title);
 	for (size_t i = 0; i < len; i++)
@@ -22,7 +22,7 @@ static void	ft_print_array(int *arr, size_t len, const char *title)
 	return ;
 }
 
-static void	ft_print_stack(t_stack *stack, const char *title)
+void	ft_print_stack(t_stack *stack, const char *title)
 {
 	printf("%s\n", title);
 	while (stack != (void *)0)
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	ft_print_array(sort_arr, length, "SORTED ARRAY:");
 	stack_a = ft_create_stack_a(&unsort_arr, sort_arr, length);
 	ft_print_stack(stack_a, "STACK_A:");
+	ft_sort(&stack_a, length);
 	return (0);
 	
 }

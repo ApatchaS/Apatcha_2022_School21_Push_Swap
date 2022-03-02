@@ -6,42 +6,11 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:43:58 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/02 01:27:18 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/02 20:26:47 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
-
-t_stack	*ft_lstnew(size_t value)
-{
-	t_stack	*new;
-
-	new = (t_stack *)malloc(sizeof(t_stack));
-	if (new == (void *)0)
-		ft_print_error();
-	new->value = value;
-	new->next = (void *)0;
-	return (new);
-}
-
-void	ft_lstadd_back(t_stack **stack, t_stack *new)
-{
-	t_stack	*iter;
-
-	if (new == (void *)0)
-		return ;
-	if (*stack)
-	{
-		iter = *stack;
-		while (iter->next != (void *)0)
-			iter = iter->next;
-		iter->next = new;
-	}
-	else
-		*stack = new;
-	return ;
-}
 
 t_stack	*ft_create_stack_a(int **unsort_arr, int *sort_arr, size_t length)
 {
