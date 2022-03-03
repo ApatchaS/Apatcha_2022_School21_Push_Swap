@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	int		*sort_arr;
 	t_stack	*stack_a;
 	size_t	length;
-	
+
 	if (argc == 1)
 		return (1);
 	length = ft_create_unsort_arr(argc, argv, &unsort_arr);
@@ -51,5 +51,4 @@ int	main(int argc, char **argv)
 	ft_print_stack(stack_a, "STACK_A:");
 	ft_sort(&stack_a, length);
 	return (0);
-	
 }

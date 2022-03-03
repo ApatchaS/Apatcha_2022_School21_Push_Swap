@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:00:39 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/02 23:42:07 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/03 15:37:55 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	ft_pa(t_stack **a, t_stack **b)
 {
-	t_stack *tmp;
-	
+	t_stack	*tmp;
+
 	ft_lstadd_front(a, ft_lstnew((*b)->value));
 	tmp = (*b)->next;
 	free(*b);
@@ -27,7 +27,7 @@ void	ft_pa(t_stack **a, t_stack **b)
 
 void	ft_pb(t_stack **a, t_stack **b)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	ft_lstadd_front(b, ft_lstnew((*a)->value));
 	tmp = (*a)->next;
@@ -40,7 +40,7 @@ void	ft_pb(t_stack **a, t_stack **b)
 void	ft_ra(t_stack **a)
 {
 	t_stack	*tmp;
-	
+
 	if (ft_lstsize(*a) < 2)
 		return ;
 	ft_lstadd_back(a, ft_lstnew((*a)->value));
@@ -54,7 +54,7 @@ void	ft_ra(t_stack **a)
 void	ft_rb(t_stack **b)
 {
 	t_stack	*tmp;
-	
+
 	if (ft_lstsize(*b) < 2)
 		return ;
 	ft_lstadd_back(b, ft_lstnew((*b)->value));
@@ -64,9 +64,10 @@ void	ft_rb(t_stack **b)
 	write(1, "rb\n", 3);
 	return ;
 }
+
 void	ft_rrb(t_stack **b)
 {
-	t_stack *iter;
+	t_stack	*iter;
 
 	if (ft_lstsize(*b) < 2)
 		return ;

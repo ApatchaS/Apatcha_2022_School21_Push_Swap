@@ -16,7 +16,7 @@
 # include <unistd.h> //function: write
 # include <stdlib.h> //function: malloc free exit
 
-typedef struct 		s_stack
+typedef struct s_stack
 {
 	size_t			value;
 	struct s_stack	*next;

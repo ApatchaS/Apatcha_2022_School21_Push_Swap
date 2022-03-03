@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 22:59:18 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/02 01:24:02 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/03 15:39:10 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	ft_swap(int *a, int *b)
 
 static void	ft_insetion_sort(int **arr, size_t length)
 {
-	int i;
-	int j;
-	int key;
+	int	i;
+	int	j;
+	int	key;
 
 	i = 1;
 	while (i < length)
@@ -36,7 +36,7 @@ static void	ft_insetion_sort(int **arr, size_t length)
 		while (j >= 0)
 		{
 			if ((*arr)[j] < key)
-				break;
+				break ;
 			ft_swap(&(*arr)[j], &(*arr)[j + 1]);
 			j--;
 		}
