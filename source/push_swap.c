@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:16:02 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/01 14:16:02 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/10 23:25:27 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 void	ft_print_array(int *arr, size_t len, const char *title)
 {
+	size_t	iter;
+
 	printf("%s\n", title);
-	for (size_t i = 0; i < len; i++)
-		printf("%d ", arr[i]);
+	iter = 0;
+	while (iter < len)
+	{
+		printf("%d ", arr[iter]);
+		iter++;
+	}
 	printf("\n");
 	return ;
 }
@@ -27,7 +33,7 @@ void	ft_print_stack(t_stack *stack, const char *title)
 	printf("%s\n", title);
 	while (stack != (void *)0)
 	{
-		printf("POINTER:%p  ||  VALUE:%lu\n", stack, stack->value);
+		printf("POINTER:%15p  ||  VALUE:%5lu\n", stack, stack->value);
 		stack = stack->next;
 	}
 	return ;
@@ -35,20 +41,20 @@ void	ft_print_stack(t_stack *stack, const char *title)
 
 int	main(int argc, char **argv)
 {
-	int		*unsort_arr;
-	int		*sort_arr;
-	t_stack	*stack_a;
-	size_t	length;
+	t_arrays	arrays;
+	t_stacks	stacks;
 
 	if (argc == 1)
 		return (1);
-	length = ft_create_unsort_arr(argc, argv, &unsort_arr);
-	printf("LENGTH: %lu\n", length);
-	ft_print_array(unsort_arr, length, "UNSORTED ARRAY:");
-	ft_create_sort_arr(&unsort_arr, &sort_arr, length);
-	ft_print_array(sort_arr, length, "SORTED ARRAY:");
-	stack_a = ft_create_stack_a(&unsort_arr, sort_arr, length);
-	ft_print_stack(stack_a, "STACK_A:");
-	ft_sort(&stack_a, length);
+	arrays.length = ft_create_unsort_arr(argc, argv, &arrays.unsorted);
+	printf("ARRAYS LENGTH: %lu\n", arrays.length);
+	ft_print_array(arrays.unsorted, arrays.length, "UNSORTED ARRAY:");
+	ft_create_sort_arr(&arrays);
+	ft_print_array(arrays.sorted, arrays.length, "SORTED ARRAY:");
+	stacks.a = ft_create_stack_a(&arrays);
+	stacks.a_len = arrays.length;
+	printf("A INIT LENGTH: %lu\n", stacks.a_len);
+	ft_print_stack(stacks.a, "A INIT:");
+	ft_sort(&stacks);
 	return (0);
 }

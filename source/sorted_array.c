@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 22:59:18 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/03 15:39:10 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/10 22:30:25 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_insetion_sort(int **arr, size_t length)
 	int	key;
 
 	i = 1;
-	while (i < length)
+	while (i < (int)length)
 	{
 		j = i - 1;
 		key = (*arr)[i];
@@ -45,27 +45,27 @@ static void	ft_insetion_sort(int **arr, size_t length)
 	return ;
 }
 
-static void	ft_check_dup(int **arr, size_t length)
+static void	ft_check_dup(int *arr, size_t length)
 {
 	size_t	iter;
 
 	iter = 0;
 	while (iter < length - 1)
 	{
-		if ((*arr)[iter] == (*arr)[iter + 1])
+		if (arr[iter] == arr[iter + 1])
 			ft_print_error();
 		iter++;
 	}
 	return ;
 }
 
-void	ft_create_sort_arr(int **unsorted, int **sorted, size_t length)
+void	ft_create_sort_arr(t_arrays *arrays)
 {
-	*sorted = (int *)malloc(sizeof(int) * length);
-	if (*sorted == (void *)0)
+	arrays->sorted = (int *)malloc(sizeof(int) * arrays->length);
+	if (arrays->sorted == (void *)0)
 		ft_print_error();
-	ft_push_into_new(sorted, unsorted, length, 0);
-	ft_insetion_sort(sorted, length);
-	ft_check_dup(sorted, length);
+	ft_push_into_new(&arrays->sorted, &arrays->unsorted, arrays->length, 0);
+	ft_insetion_sort(&arrays->sorted, arrays->length);
+	ft_check_dup(arrays->sorted, arrays->length);
 	return ;
 }

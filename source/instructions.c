@@ -6,12 +6,11 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:00:39 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/03 15:37:55 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/10 23:34:24 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
 void	ft_pa(t_stack **a, t_stack **b)
 {
@@ -75,24 +74,8 @@ void	ft_rrb(t_stack **b)
 	while (iter->next->next != (void *)0)
 		iter = iter->next;
 	ft_lstadd_front(b, ft_lstnew(iter->next->value));
-	iter->next = (void *)0;
 	free(iter->next);
+	iter->next = (void *)0;
 	write(1, "rrb\n", 4);
 	return ;
-/*
-	t_stack *iter;
-	t_stack *jter;
-
-	iter = *b;
-	while (iter->next != (void *)0)
-		iter = iter->next;
-	ft_lstadd_front(b, ft_lstnew(iter->value));
-	jter = *b;
-	while (jter->next != iter)
-		jter = jter->next;
-	jter->next = (void *)0;
-	free(iter);
-	write(1, "rrb\n", 4);
-	return ;
-*/
 }

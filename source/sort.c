@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:50:17 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/02 22:55:57 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/10 23:25:00 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,66 +32,76 @@ static size_t	ft_special_cases(t_stack **stack, size_t length)
 	return (0);
 }
 
-static void	ft_butterfly_to_b(t_stack **a, t_stack **b, size_t length)
+static void	ft_butterfly_to_b(t_stacks *stacks)
 {
 	size_t	iter;
 
 	iter = 0;
-	while (iter < length)
+	stacks->b_len = 0;
+	while (stacks->a_len != 0)
 	{
-		if ((*a)->value <= iter)
+		if (stacks->a->value <= iter)
 		{
-			ft_pb(a, b);
-			ft_rb(b);
+			ft_pb(&stacks->a, &stacks->b);
+			ft_rb(&stacks->b);
 			iter++;
+			stacks->a_len--;
+			stacks->b_len++;
 		}
-		else if ((*a)->value <= iter + 1)
+		else if (stacks->a->value <= iter + 1)
 		{
-			ft_pb(a, b);
+			ft_pb(&stacks->a, &stacks->b);
 			iter++;
+			stacks->a_len--;
+			stacks->b_len++;
 		}
 		else
-			ft_ra(a);
+			ft_ra(&stacks->a);
 	}
 	return ;
 }
 
-static void	ft_butterfly_to_a(t_stack **a, t_stack **b, size_t length)
+static void	ft_butterfly_to_a(t_stacks *stacks)
 {
-	size_t	iter;
 	t_stack	*buf;
 
-	iter = 0;
-	while (iter < length)
+	while (stacks->b_len != 0)
 	{
-		buf = *b;
+		buf = stacks->b;
 		while (buf->next != (void *)0)
 			buf = buf->next;
-		if ((*b)->value >= buf->value)
-			ft_pa(a, b);
+		if (stacks->b->value >= buf->value)
+			ft_pa(&stacks->a, &stacks->b);
 		else
 		{
-			ft_rrb(b);
-			ft_pa(a, b);
+			ft_rrb(&stacks->b);
+			ft_pa(&stacks->a, &stacks->b);
 		}
-		iter++;
+		stacks->b_len--;
+		stacks->a_len++;
 	}
 	return ;
 }
 
-void	ft_sort(t_stack **stack_a, size_t length)
+void	ft_sort(t_stacks *stacks)
 {
-	t_stack	*stack_b;
-
-	stack_b = (void *)0;
-	if (!ft_special_cases(stack_a, length))
+	stacks->b = (void *)0;
+	if (!ft_special_cases(&stacks->a, stacks->a_len))
 	{
-		ft_butterfly_to_b(stack_a, &stack_b, length);
-		ft_print_stack(*stack_a, "CHANGED A:");
-		ft_print_stack(stack_b, "CHANGED B:");
-		ft_butterfly_to_a(stack_a, &stack_b, length);
+		ft_butterfly_to_b(stacks);
+
+		printf("A CHANGED LENGTH: %lu\n", stacks->a_len);
+		ft_print_stack(stacks->a, "A CHANGED:");
+		printf("B CHANGED LENGTH: %lu\n", stacks->b_len);
+		ft_print_stack(stacks->b, "B CHANGED:");
+
+		ft_butterfly_to_a(stacks);
 	}
-	ft_print_stack(*stack_a, "SORTED A:");
-	ft_print_stack(stack_b, "SORTED B:");
+
+	printf("A SORTED LENGTH: %lu\n", stacks->a_len);
+	ft_print_stack(stacks->a, "A SORTED:");
+	printf("B SORTED LENGTH: %lu\n", stacks->b_len);
+	ft_print_stack(stacks->b, "B SORTED:");
+
 	return ;
 }

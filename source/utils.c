@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 20:57:52 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/03 15:39:49 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/10 21:43:54 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_print_error(void)
 	exit(1);
 }
 
-size_t	ft_find_length(const char **str)
+size_t	ft_find_length(char **str)
 {
 	size_t	iter;
 
@@ -38,7 +38,7 @@ void	ft_push_into_new(int **new, int **cur, size_t length, size_t flag)
 		(*new)[iter] = (*cur)[iter];
 		iter++;
 	}
-	if (flag && length != 0)
+	if ((flag == 1) && (length != 0))
 		free(*cur);
 	return ;
 }

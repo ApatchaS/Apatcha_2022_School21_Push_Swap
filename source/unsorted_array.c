@@ -6,16 +6,16 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 22:39:06 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/03 15:41:41 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/10 22:16:10 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static size_t	ft_fill_unsort_arr(const char *str, int **unsort_arr, size_t l)
+static size_t	ft_fill_unsort_arr(const char *str, int **unsorted, size_t l)
 {
 	char	**elements;
-	int		*new_unsort_arr;
+	int		*new_unsorted;
 	size_t	inc;
 	size_t	iter;
 
@@ -23,19 +23,19 @@ static size_t	ft_fill_unsort_arr(const char *str, int **unsort_arr, size_t l)
 	if (elements == (void *)0)
 		ft_print_error();
 	inc = ft_find_length(elements);
-	new_unsort_arr = (int *)malloc(sizeof(int) * (l + inc));
-	if (new_unsort_arr == (void *)0)
+	new_unsorted = (int *)malloc(sizeof(int) * (l + inc));
+	if (new_unsorted == (void *)0)
 		ft_print_error();
-	ft_push_into_new(&new_unsort_arr, unsort_arr, l, 1);
+	ft_push_into_new(&new_unsorted, unsorted, l, 1);
 	iter = 0;
 	while (iter < inc)
 	{
-		new_unsort_arr[l + iter] = ft_atoi(elements[iter]);
+		new_unsorted[l + iter] = ft_atoi(elements[iter]);
 		free(elements[iter]);
 		iter++;
 	}
 	free(elements);
-	*unsort_arr = new_unsort_arr;
+	*unsorted = new_unsorted;
 	return (inc);
 }
 
@@ -54,17 +54,17 @@ static void	ft_check_err_input(const char *str)
 	return ;
 }
 
-size_t	ft_create_unsort_arr(int argc, char **argv, int **unsort_arr)
+size_t	ft_create_unsort_arr(int argc, char **argv, int **unsorted)
 {
 	size_t	iter;
 	size_t	length;
 
 	iter = 1;
 	length = 0;
-	while (iter < argc)
+	while ((int)iter < argc)
 	{
 		ft_check_err_input(argv[iter]);
-		length += ft_fill_unsort_arr(argv[iter], unsort_arr, length);
+		length += ft_fill_unsort_arr(argv[iter], unsorted, length);
 		iter++;
 	}
 	return (length);
