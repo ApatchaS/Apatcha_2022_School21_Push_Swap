@@ -18,6 +18,16 @@ void	ft_print_error(void)
 	exit(1);
 }
 
+void	ft_print_note(const char *note)
+{
+	size_t	iter;
+
+	iter = 0;
+	while (note[iter] != '\0')
+		write(1, &note[iter++], 1);
+	return ;
+}
+
 size_t	ft_find_length(char **str)
 {
 	size_t	iter;

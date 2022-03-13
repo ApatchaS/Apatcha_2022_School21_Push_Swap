@@ -43,12 +43,18 @@ typedef struct s_cost
 	size_t	rb;
 	size_t	rra;
 	size_t	rrb;
+	size_t	rr;
+	size_t	rrr;
 	size_t	total;
 }			t_cost;
 
-//push_swap
-void	ft_print_array(int *arr, size_t len, const char *title);
-void	ft_print_stack(t_stack *stack, const char *title);
+typedef struct s_optimization
+{
+	size_t	ra_rrb;
+	size_t	rb_rra;
+	size_t	ra_rb;
+	size_t	rra_rrb;
+}			t_optimization;
 
 //libft functions
 char	**ft_split(char const *s, char c);
@@ -56,6 +62,7 @@ int		ft_atoi(const char *str);
 
 //utils
 void	ft_print_error(void);
+void	ft_print_note(const char *note);
 size_t	ft_find_length(char **str);
 void	ft_push_into_new(int **new, int **cur, size_t length, size_t flag);
 
@@ -73,15 +80,29 @@ size_t	ft_lstsize(t_stack *stack);
 
 //stack_a
 t_stack	*ft_create_stack_a(t_arrays *arrays);
+size_t	ft_check_sort(t_stack *stack, size_t length);
+void	ft_sort_tree(t_stack **stack);
+void	ft_final_sort(t_stack **stack, size_t length);
+
+//stack_b
+void	ft_create_stack_b(t_stacks *stacks);
+void	ft_push_from_b_to_a(t_stacks *stacks);
 
 //sort
 void	ft_sort(t_stacks *stacks);
 
-//instructions
-void	ft_pa(t_stack **a, t_stack **b);
-void	ft_pb(t_stack **a, t_stack **b);
-void	ft_ra(t_stack **a);
-void	ft_rb(t_stack **b);
-void	ft_rrb(t_stack **b);
+//instructions_general instructions_special
+void	ft_push(t_stack **from, t_stack **to, const char *note);
+void	ft_swap(t_stack **stack, const char *note);
+void	ft_rotate(t_stack **stack, const char *note);
+void	ft_reverse_rotate(t_stack **stack, const char *note);
+void	ft_rotate_both(t_stack **a, t_stack **b);
+void	ft_reverse_rotate_both(t_stack **a, t_stack **b);
+
+//cost cost_utils
+size_t	ft_create_cost(t_stacks *stacks, t_cost **cost);
+void	ft_optimize(t_optimization *opt, t_cost *cost);
+void	ft_zeroes(size_t *field_first, size_t *field_second);
+void	ft_rr_rrr_handle(size_t	*a, size_t *b, size_t *purpose);
 
 #endif

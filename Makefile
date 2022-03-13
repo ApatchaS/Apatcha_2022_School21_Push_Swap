@@ -18,9 +18,10 @@ SRCS_LIST							=	push_swap.c\
 										utils.c\
 										unsorted_array.c sorted_array.c\
 										list.c\
-										stack_a.c\
+										stack_a.c stack_b.c\
 										sort.c\
-										instructions.c\
+										instructions_general.c instructions_special.c\
+										cost.c cost_utils.c
 
 HEAD_DIR							=	include/
 HEAD_NAME							=	push_swap.h
@@ -32,7 +33,7 @@ OBJS								=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 CC									=	gcc
 OFLAGS								=	-O2
-CFLAGS								=	-Wall -Werror -Wextra
+CFLAGS								=	#-Wall -Werror -Wextra
 RM									=	rm -rf
 
 all:								$(NAME)

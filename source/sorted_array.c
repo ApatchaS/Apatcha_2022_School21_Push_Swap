@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-static void	ft_swap(int *a, int *b)
+static void	ft_swap_values(int *a, int *b)
 {
 	int	tmp;
 
@@ -37,7 +37,7 @@ static void	ft_insetion_sort(int **arr, size_t length)
 		{
 			if ((*arr)[j] < key)
 				break ;
-			ft_swap(&(*arr)[j], &(*arr)[j + 1]);
+			ft_swap_values(&(*arr)[j], &(*arr)[j + 1]);
 			j--;
 		}
 		i++;

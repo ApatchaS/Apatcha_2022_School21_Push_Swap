@@ -11,30 +11,16 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
-void	ft_print_array(int *arr, size_t len, const char *title)
+static void	ft_clean_stack(t_stack **stack)
 {
-	size_t	iter;
+	t_stack	*tmp;
 
-	printf("%s\n", title);
-	iter = 0;
-	while (iter < len)
+	while (*stack != (void *)0)
 	{
-		printf("%d ", arr[iter]);
-		iter++;
-	}
-	printf("\n");
-	return ;
-}
-
-void	ft_print_stack(t_stack *stack, const char *title)
-{
-	printf("%s\n", title);
-	while (stack != (void *)0)
-	{
-		printf("POINTER:%15p  ||  VALUE:%5lu\n", stack, stack->value);
-		stack = stack->next;
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
 	}
 	return ;
 }
@@ -47,14 +33,11 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (1);
 	arrays.length = ft_create_unsort_arr(argc, argv, &arrays.unsorted);
-	printf("ARRAYS LENGTH: %lu\n", arrays.length);
-	ft_print_array(arrays.unsorted, arrays.length, "UNSORTED ARRAY:");
 	ft_create_sort_arr(&arrays);
-	ft_print_array(arrays.sorted, arrays.length, "SORTED ARRAY:");
 	stacks.a = ft_create_stack_a(&arrays);
 	stacks.a_len = arrays.length;
-	printf("A INIT LENGTH: %lu\n", stacks.a_len);
-	ft_print_stack(stacks.a, "A INIT:");
 	ft_sort(&stacks);
+	free(arrays.sorted);
+	ft_clean_stack(&stacks.a);
 	return (0);
 }

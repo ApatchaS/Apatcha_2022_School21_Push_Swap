@@ -12,70 +12,58 @@
 
 #include "../include/push_swap.h"
 
-void	ft_pa(t_stack **a, t_stack **b)
+void	ft_push(t_stack **from, t_stack **to, const char *note)
 {
 	t_stack	*tmp;
 
-	ft_lstadd_front(a, ft_lstnew((*b)->value));
-	tmp = (*b)->next;
-	free(*b);
-	*b = tmp;
-	write(1, "pa\n", 3);
+	ft_lstadd_front(to, ft_lstnew((*from)->value));
+	tmp = (*from)->next;
+	free(*from);
+	*from = tmp;
+	ft_print_note(note);
 	return ;
 }
 
-void	ft_pb(t_stack **a, t_stack **b)
+void	ft_swap(t_stack **stack, const char *note)
 {
 	t_stack	*tmp;
 
-	ft_lstadd_front(b, ft_lstnew((*a)->value));
-	tmp = (*a)->next;
-	free(*a);
-	*a = tmp;
-	write(1, "pb\n", 3);
-	return ;
-}
-
-void	ft_ra(t_stack **a)
-{
-	t_stack	*tmp;
-
-	if (ft_lstsize(*a) < 2)
+	if (ft_lstsize(*stack) < 2)
 		return ;
-	ft_lstadd_back(a, ft_lstnew((*a)->value));
-	tmp = (*a)->next;
-	free(*a);
-	*a = tmp;
-	write(1, "ra\n", 3);
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	ft_lstadd_front(stack, ft_lstnew(tmp->value));
+	free(tmp);
+	ft_print_note(note);
 	return ;
 }
 
-void	ft_rb(t_stack **b)
+void	ft_rotate(t_stack **stack, const char *note)
 {
 	t_stack	*tmp;
 
-	if (ft_lstsize(*b) < 2)
+	if (ft_lstsize(*stack) < 2)
 		return ;
-	ft_lstadd_back(b, ft_lstnew((*b)->value));
-	tmp = (*b)->next;
-	free(*b);
-	*b = tmp;
-	write(1, "rb\n", 3);
+	ft_lstadd_back(stack, ft_lstnew((*stack)->value));
+	tmp = (*stack)->next;
+	free(*stack);
+	*stack = tmp;
+	ft_print_note(note);
 	return ;
 }
 
-void	ft_rrb(t_stack **b)
+void	ft_reverse_rotate(t_stack **stack, const char *note)
 {
 	t_stack	*iter;
 
-	if (ft_lstsize(*b) < 2)
+	if (ft_lstsize(*stack) < 2)
 		return ;
-	iter = *b;
+	iter = *stack;
 	while (iter->next->next != (void *)0)
 		iter = iter->next;
-	ft_lstadd_front(b, ft_lstnew(iter->next->value));
+	ft_lstadd_front(stack, ft_lstnew(iter->next->value));
 	free(iter->next);
 	iter->next = (void *)0;
-	write(1, "rrb\n", 4);
+	ft_print_note(note);
 	return ;
 }
