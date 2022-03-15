@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 20:22:39 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/02 23:37:26 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 22:36:20 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,13 @@ size_t	ft_lstsize(t_stack *stack)
 		stack = stack->next;
 	}
 	return (size);
+}
+
+size_t	ft_lstlast(t_stack *stack)
+{
+	if (stack == (void *)0)
+		return (0);
+	while (stack->next != (void *)0)
+		stack = stack->next;
+	return (stack->value);
 }

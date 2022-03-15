@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:07:35 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/15 04:44:29 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 21:16:23 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static size_t	ft_check_command(const char *command, char **commands)
 		iter++;
 	}
 	ft_print_error();
+	return (iter);
 }
 
 void	ft_check(t_stacks *stacks)

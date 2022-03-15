@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:07:56 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/15 04:16:08 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 21:17:22 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_swaps(t_stack **a, t_stack **b, size_t command_ind)
 	if (command_ind == 2)
 		ft_swap(a);
 	else if (command_ind == 3)
-		ft_swap(a);
+		ft_swap(b);
 	else if (command_ind == 4)
 	{
 		ft_swap(a);

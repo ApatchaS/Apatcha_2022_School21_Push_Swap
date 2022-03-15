@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 00:43:58 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/10 22:38:37 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 21:10:37 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ size_t	ft_check_sort(t_stack *stack, size_t length)
 			mono--;
 		tmp = tmp->next;
 	}
-	if (mono == length - 1)
+	if (mono == (int)(length - 1))
 		return (1);
-	if (mono == length - 3 && stack->value > tmp->value)
+	if (mono == (int)(length - 3) && stack->value > tmp->value)
 		return (1);
 	return (0);
 }

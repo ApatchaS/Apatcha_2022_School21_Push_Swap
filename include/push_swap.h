@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:15:24 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/10 23:01:46 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 22:17:50 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_stack	*ft_lstnew(size_t value);
 void	ft_lstadd_front(t_stack **stack, t_stack *new);
 void	ft_lstadd_back(t_stack **stack, t_stack *new);
 size_t	ft_lstsize(t_stack *stack);
+size_t	ft_lstlast(t_stack *stack);
 
 //stack_a
 t_stack	*ft_create_stack_a(t_arrays *arrays);

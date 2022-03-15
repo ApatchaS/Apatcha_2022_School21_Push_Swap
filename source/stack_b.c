@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 01:31:57 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/13 21:04:46 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 23:40:55 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,22 @@ void	ft_push_from_b_to_a(t_stacks *stacks)
 	return ;
 }
 
+static void	ft_handle_five_len_last_element(t_stacks *stacks)
+{
+	size_t	elem;
+
+	elem = ft_lstlast(stacks->a);
+	while (elem != 0 && elem != 2 && elem != 4)
+	{
+		ft_reverse_rotate(&stacks->a, "rra\n");
+		ft_push(&stacks->a, &stacks->b, "pb\n");
+		stacks->a_len--;
+		stacks->b_len++;
+		elem = ft_lstlast(stacks->a);
+	}
+	return ;
+}
+
 void	ft_create_stack_b(t_stacks *stacks)
 {	
 	size_t	a_len_buf;
@@ -80,9 +96,11 @@ void	ft_create_stack_b(t_stacks *stacks)
 	stacks->b = (void *)0;
 	stacks->b_len = 0;
 	a_len_buf = stacks->a_len;
+	if (stacks->a_len == 5)
+		ft_handle_five_len_last_element(stacks);
 	while (stacks->a_len != 3)
 	{
-		if (stacks->a->value != 0 && stacks->a->value != (int)(a_len_buf / 2)
+		if (stacks->a->value != 0 && stacks->a->value != (size_t)(a_len_buf / 2)
 			&& stacks->a->value != (a_len_buf - 1))
 		{
 			ft_push(&stacks->a, &stacks->b, "pb\n");
