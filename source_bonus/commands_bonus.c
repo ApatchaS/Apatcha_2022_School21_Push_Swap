@@ -6,21 +6,21 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:07:56 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/14 16:46:44 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 04:16:08 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include_bonus/checker_bonus.h"
 
-void	ft_pushs(t_stacks *stacks, const char *com)
+void	ft_pushs(t_stacks *stacks, size_t command_ind)
 {
-	if (com == "pa\n")
+	if (command_ind == 0)
 	{
 		ft_push(&stacks->b, &stacks->a);
 		stacks->a_len++;
 		stacks->b_len--;
 	}
-	else if (com == "pb\n")
+	else if (command_ind == 1)
 	{
 		ft_push(&stacks->a, &stacks->b);
 		stacks->a_len--;
@@ -29,13 +29,13 @@ void	ft_pushs(t_stacks *stacks, const char *com)
 	return ;
 }
 
-void	ft_swaps(t_stack **a, t_stack **b, const char *com)
+void	ft_swaps(t_stack **a, t_stack **b, size_t command_ind)
 {
-	if (com == "sa\n")
+	if (command_ind == 2)
 		ft_swap(a);
-	else if (com == "sb\n")
+	else if (command_ind == 3)
 		ft_swap(a);
-	else if (com == "ss\n")
+	else if (command_ind == 4)
 	{
 		ft_swap(a);
 		ft_swap(b);
@@ -43,13 +43,13 @@ void	ft_swaps(t_stack **a, t_stack **b, const char *com)
 	return ;
 }
 
-void	ft_rotates(t_stack **a, t_stack **b, const char *com)
+void	ft_rotates(t_stack **a, t_stack **b, size_t command_ind)
 {
-	if (com == "ra\n")
+	if (command_ind == 5)
 		ft_rotate(a);
-	else if (com == "rb\n")
+	else if (command_ind == 6)
 		ft_rotate(b);
-	else if (com == "rr\n")
+	else if (command_ind == 7)
 	{
 		ft_rotate(a);
 		ft_rotate(b);
@@ -57,13 +57,13 @@ void	ft_rotates(t_stack **a, t_stack **b, const char *com)
 	return ;
 }
 
-void	ft_reverse_rotates(t_stack **a, t_stack **b, const char *com)
+void	ft_reverse_rotates(t_stack **a, t_stack **b, size_t command_ind)
 {
-	if (com == "rra\n")
+	if (command_ind == 8)
 		ft_reverse_rotate(a);
-	else if (com == "rrb\n")
+	else if (command_ind == 9)
 		ft_reverse_rotate(b);
-	else if (com == "rrr\n")
+	else if (command_ind == 10)
 	{
 		ft_reverse_rotate(a);
 		ft_reverse_rotate(b);

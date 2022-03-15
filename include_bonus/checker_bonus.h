@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 04:41:24 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/14 16:38:44 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 04:47:45 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	ft_rotate(t_stack **stack);
 void	ft_reverse_rotate(t_stack **stack);
 
 //commands_bonus
-void	ft_pushs(t_stacks *stacks, const char *com);
-void	ft_swaps(t_stack **a, t_stack **b, const char *com);
-void	ft_rotates(t_stack **a, t_stack **b, const char *com);
-void	ft_reverse_rotates(t_stack **a, t_stack **b, const char *com);
+void	ft_pushs(t_stacks *stacks, size_t command_ind);
+void	ft_swaps(t_stack **a, t_stack **b, size_t command_ind);
+void	ft_rotates(t_stack **a, t_stack **b, size_t command_ind);
+void	ft_reverse_rotates(t_stack **a, t_stack **b, size_t command_ind);
 
 #endif

@@ -16,7 +16,7 @@ void	ft_push(t_stack **from, t_stack **to, const char *note)
 {
 	t_stack	*tmp;
 
-	if ((*from) == (void *)0) //check later
+	if ((*from) == (void *)0)
 		return ;
 	ft_lstadd_front(to, ft_lstnew((*from)->value));
 	tmp = (*from)->next;

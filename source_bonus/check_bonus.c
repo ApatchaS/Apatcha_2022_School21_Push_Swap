@@ -6,7 +6,7 @@
 /*   By: asippy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:07:35 by asippy            #+#    #+#             */
-/*   Updated: 2022/03/14 16:46:48 by asippy           ###   ########.fr       */
+/*   Updated: 2022/03/15 04:44:29 by asippy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,74 @@ static size_t	ft_check_if_sorted(t_stacks *stacks, size_t size)
 	return (flag);
 }
 
-static void	ft_check_command(const char *com)
+static char	**ft_init_commands_list(void)
 {
-	if (com != "ra\n" && com != "rb\n" && com != "rr\n"
-		&& com != "rra\n" && com != "rrb\n" && com != "rrr\n"
-		&& com != "sa\n" && com != "sb\n" && com != "ss\n"
-		&& com != "pa\n" && com != "pb\n")
-		ft_print_error();
-	return ;
+	int		iter;
+	char	**commands;
+
+	iter = -1;
+	commands = (char **)malloc(sizeof(char *) * 12);
+	while (++iter < 11)
+	{
+		if (iter > 7)
+			commands[iter] = (char *)malloc(sizeof(char) * 5);
+		else
+			commands[iter] = (char *)malloc(sizeof(char) * 4);
+	}
+	commands[0] = "pa\n";
+	commands[1] = "pb\n";
+	commands[2] = "sa\n";
+	commands[3] = "sb\n";
+	commands[4] = "ss\n";
+	commands[5] = "ra\n";
+	commands[6] = "rb\n";
+	commands[7] = "rr\n";
+	commands[8] = "rra\n";
+	commands[9] = "rrb\n";
+	commands[10] = "rrr\n";
+	commands[11] = (void *)0;
+	return (commands);
+}
+
+static size_t	ft_check_command(const char *command, char **commands)
+{
+	size_t	iter;
+	size_t	jter;
+
+	iter = 0;
+	while (commands[iter] != (void *)0)
+	{
+		jter = 0;
+		while (command[jter] != '\0' && command[jter] == commands[iter][jter])
+			jter++;
+		if (command[jter] == '\0')
+			return (iter);
+		iter++;
+	}
+	ft_print_error();
 }
 
 void	ft_check(t_stacks *stacks)
 {
 	size_t	size;
-	size_t	flag;
+	char	**commands;
 	char	*command;
+	size_t	command_ind;
 
 	size = stacks->a_len;
+	commands = ft_init_commands_list();
 	command = get_next_line(0);
-	flag = ft_check_if_sorted(stacks, size);
 	if (command == (void *)0)
-		ft_print_result(flag);
+		ft_print_result(ft_check_if_sorted(stacks, size));
 	while (command != (void *)0)
 	{
-		ft_check_command(command);
-		ft_pushs(stacks, command);
-		ft_swaps(&stacks->a, &stacks->b, command);
-		ft_rotates(&stacks->a, &stacks->b, command);
-		ft_reverse_rotates(&stacks->a, &stacks->b, command);
+		command_ind = ft_check_command(command, commands);
+		ft_pushs(stacks, command_ind);
+		ft_swaps(&stacks->a, &stacks->b, command_ind);
+		ft_rotates(&stacks->a, &stacks->b, command_ind);
+		ft_reverse_rotates(&stacks->a, &stacks->b, command_ind);
+		free(command);
 		command = get_next_line(0);
 	}
-	flag = ft_check_if_sorted(stacks, size);
-	ft_print_result(flag);
-	return ;
+	ft_print_result(ft_check_if_sorted(stacks, size));
 }
