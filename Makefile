@@ -6,7 +6,7 @@
 #    By: asippy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 22:41:46 by asippy            #+#    #+#              #
-#    Updated: 2022/03/15 21:09:20 by asippy           ###   ########.fr        #
+#    Updated: 2022/03/16 14:58:22 by asippy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ OBJS								=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 CC									=	gcc
 OFLAGS								=	-O2
-CFLAGS								=	#-Wall -Werror -Wextra
+CFLAGS								=	-Wall -Werror -Wextra
 RM									=	rm -rf
 
 $(NAME):							$(OBJS_DIR) $(OBJS)
