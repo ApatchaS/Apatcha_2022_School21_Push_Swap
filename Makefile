@@ -54,7 +54,7 @@ OBJS								=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 CC									=	gcc
 OFLAGS								=	-O2
-CFLAGS								=	-Wall -Werror -Wextra
+CFLAGS								=	#-Wall -Werror -Wextra
 RM									=	rm -rf
 
 $(NAME):							$(OBJS_DIR) $(OBJS)

@@ -63,12 +63,3 @@ size_t	ft_lstsize(t_stack *stack)
 	}
 	return (size);
 }
-
-size_t	ft_lstlast(t_stack *stack)
-{
-	if (stack == (void *)0)
-		return (0);
-	while (stack->next != (void *)0)
-		stack = stack->next;
-	return (stack->value);
-}

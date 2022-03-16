@@ -57,8 +57,6 @@ void	ft_push_from_b_to_a(t_stacks *stacks)
 	t_cost	*cost;
 	size_t	ind;
 
-	if (stacks->b_len == 0)
-		return ;
 	while (stacks->b_len != 0)
 	{
 		cost = (t_cost *)malloc(sizeof(t_cost) * stacks->b_len);
@@ -73,19 +71,12 @@ void	ft_push_from_b_to_a(t_stacks *stacks)
 	return ;
 }
 
-static void	ft_handle_five_len_last_element(t_stacks *stacks)
+void	ft_create_stack_b_from_five_len(t_stacks *stacks)
 {
-	size_t	elem;
-
-	elem = ft_lstlast(stacks->a);
-	while (elem != 0 && elem != 2 && elem != 4)
-	{
-		ft_reverse_rotate(&stacks->a, "rra\n");
-		ft_push(&stacks->a, &stacks->b, "pb\n");
-		stacks->a_len--;
-		stacks->b_len++;
-		elem = ft_lstlast(stacks->a);
-	}
+	ft_push(&stacks->a, &stacks->b, "pb\n");
+	ft_push(&stacks->a, &stacks->b, "pb\n");
+	stacks->a_len -= 2;
+	stacks->b_len += 2;
 	return ;
 }
 
@@ -93,11 +84,7 @@ void	ft_create_stack_b(t_stacks *stacks)
 {	
 	size_t	a_len_buf;
 
-	stacks->b = (void *)0;
-	stacks->b_len = 0;
 	a_len_buf = stacks->a_len;
-	if (stacks->a_len == 5)
-		ft_handle_five_len_last_element(stacks);
 	while (stacks->a_len != 3)
 	{
 		if (stacks->a->value != 0 && stacks->a->value != (size_t)(a_len_buf / 2)

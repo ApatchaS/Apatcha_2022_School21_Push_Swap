@@ -77,7 +77,6 @@ t_stack	*ft_lstnew(size_t value);
 void	ft_lstadd_front(t_stack **stack, t_stack *new);
 void	ft_lstadd_back(t_stack **stack, t_stack *new);
 size_t	ft_lstsize(t_stack *stack);
-size_t	ft_lstlast(t_stack *stack);
 
 //stack_a
 t_stack	*ft_create_stack_a(t_arrays *arrays);
@@ -87,6 +86,7 @@ void	ft_final_sort(t_stack **stack, size_t length);
 
 //stack_b
 void	ft_create_stack_b(t_stacks *stacks);
+void	ft_create_stack_b_from_five_len(t_stacks *stacks);
 void	ft_push_from_b_to_a(t_stacks *stacks);
 
 //sort

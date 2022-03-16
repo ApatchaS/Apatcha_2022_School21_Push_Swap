@@ -12,6 +12,30 @@
 
 #include "../include/push_swap.h"
 
+static size_t	ft_find_min(t_stack *a)
+{
+	t_stack	*tmp;
+	size_t	iter;
+	size_t	min_val;
+	size_t	min_ind;
+
+	tmp = a;
+	iter = 0;
+	min_val = __INT32_MAX__;
+	min_ind = 0;
+	while (tmp != (void *)0)
+	{
+		if (tmp->value < min_val)
+		{
+			min_val = tmp->value;
+			min_ind = iter;
+		}
+		iter++;
+		tmp = tmp->next;
+	}
+	return (min_ind);
+}
+
 static size_t	ft_find_position(size_t	val, t_stack *a)
 {
 	t_stack	*tmp;
@@ -32,7 +56,12 @@ static size_t	ft_find_position(size_t	val, t_stack *a)
 		tmp = tmp->next;
 	}
 	if (flag == 0)
-		iter = 0;
+	{
+		if (tmp->value < val && a->value > val)
+			return (0);
+		else
+			return (ft_find_min(a));
+	}
 	return (iter);
 }
 
